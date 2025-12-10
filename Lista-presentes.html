@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Presentes - Casamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .presente-item {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .presente-item h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .presente-item .categoria {
+            color: #666;
+            font-size: 14px;
+        }
+        .presente-item .valor {
+            color: #2c7a2c;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .btn-reservar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-reservar:hover {
+            background-color: #45a049;
+        }
+        .btn-reservado {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn-confirmar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn-cancelar {
+            background-color: #f44336;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎁 Lista de Presentes do Casamento</h1>
+
+    <div class="presente-item" data-disponivel="true">
+        <h3>Jogo de Panelas Antiaderente</h3>
+        <p class="categoria">Categoria: Cozinha</p>
+        <p class="valor">R$ 450,00</p>
+        <button class="btn-reservar" onclick="abrirModal(this, 'Jogo de Panelas Antiaderente', 'Cozinha', '450.00')">
+            Reservar Presente
+        </button>
+    </div>
+
+    <div class="presente-item" data-disponivel="true">
+        <h3>Edredom Casal King</h3>
+        <p class="categoria">Categoria: Quarto</p>
+        <p class="valor">R$ 320,00</p>
+        <button class="btn-reservar" onclick="abrirModal(this, 'Edredom Casal King', 'Quarto', '320.00')">
+            Reservar Presente
+        </button>
+    </div>
+
+    <div class="presente-item" data-disponivel="true">
+        <h3>Liquidificador Profissional</h3>
+        <p class="categoria">Categoria: Eletrodomésticos</p>
+        <p class="valor">R$ 280,00</p>
+        <button class="btn-reservar" onclick="abrirModal(this, 'Liquidificador Profissional', 'Eletrodomésticos', '280.00')">
+            Reservar Presente
+        </button>
+    </div>
+
+    <!-- Modal de Reserva -->
+    <div id="modalReserva" class="modal">
+        <div class="modal-content">
+            <h2>Reservar Presente</h2>
+            <p id="itemSelecionado"></p>
+
+            <form id="formReserva">
+                <div class="form-group">
+                    <label for="nomeConvidado">Seu Nome Completo *</label>
+                    <input type="text" id="nomeConvidado" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailConvidado">Seu Email *</label>
+                    <input type="email" id="emailConvidado" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefoneConvidado">Telefone (opcional)</label>
+                    <input type="tel" id="telefoneConvidado">
+                </div>
+
+                <button type="submit" class="btn-confirmar">Confirmar Reserva</button>
+                <button type="button" class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // IMPORTANTE: Substitua pela URL do seu webhook do n8n
+        const WEBHOOK_URL = 'https://SEU_N8N_INSTANCE.app.n8n.cloud/webhook/reservar-presente';
+
+        let itemAtual = {};
+        let botaoAtual = null;
+
+        function abrirModal(botao, nomeItem, categoria, valor) {
+            itemAtual = { nomeItem, categoria, valor };
+            botaoAtual = botao;
+
+            document.getElementById('itemSelecionado').textContent = 
+                `Você está reservando: ${nomeItem} - R$ ${valor}`;
+            document.getElementById('modalReserva').style.display = 'block';
+        }
+
+        function fecharModal() {
+            document.getElementById('modalReserva').style.display = 'none';
+            document.getElementById('formReserva').reset();
+        }
+
+        document.getElementById('formReserva').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const dados = {
+                nomeItem: itemAtual.nomeItem,
+                categoria: itemAtual.categoria,
+                valor: itemAtual.valor,
+                nomeConvidado: document.getElementById('nomeConvidado').value,
+                emailConvidado: document.getElementById('emailConvidado').value,
+                telefoneConvidado: document.getElementById('telefoneConvidado').value
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                const resultado = await response.json();
+
+                if (resultado.success) {
+                    alert('Presente reservado com sucesso! Obrigado! 🎉');
+
+                    // Marcar como reservado
+                    botaoAtual.textContent = 'Já Reservado';
+                    botaoAtual.classList.add('btn-reservado');
+                    botaoAtual.disabled = true;
+                    botaoAtual.onclick = null;
+
+                    fecharModal();
+                } else {
+                    alert('Erro ao reservar presente. Tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao conectar com o servidor. Tente novamente.');
+            }
+        });
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalReserva');
+            if (event.target == modal) {
+                fecharModal();
+            }
+        }
+    </script>
+</body>
+</html>
