@@ -27,10 +27,9 @@
             color: #666;
             font-size: 14px;
         }
+        /* Valores removidos da exibição: ocultamos qualquer elemento de valor */
         .presente-item .valor {
-            color: #2c7a2c;
-            font-weight: bold;
-            margin: 10px 0;
+            display: none;
         }
         .btn-reservar {
             background-color: #E35336;
@@ -107,8 +106,7 @@
     <div class="presente-item" data-disponivel="true">
         <h3>Jogo de Panelas Antiaderente</h3>
         <p class="categoria">Categoria: Cozinha</p>
-        <p class="valor">R$ 450,00</p>
-        <button class="btn-reservar" onclick="abrirModal(this, 'Jogo de Panelas Antiaderente', 'Cozinha', '450.00')">
+        <button class="btn-reservar" onclick="abrirModal(this, 'Jogo de Panelas Antiaderente', 'Cozinha')">
             Reservar Presente
         </button>
     </div>
@@ -116,8 +114,7 @@
     <div class="presente-item" data-disponivel="true">
         <h3>Edredom Casal King</h3>
         <p class="categoria">Categoria: Quarto</p>
-        <p class="valor">R$ 320,00</p>
-        <button class="btn-reservar" onclick="abrirModal(this, 'Edredom Casal King', 'Quarto', '320.00')">
+        <button class="btn-reservar" onclick="abrirModal(this, 'Edredom Casal King', 'Quarto')">
             Reservar Presente
         </button>
     </div>
@@ -125,8 +122,7 @@
     <div class="presente-item" data-disponivel="true">
         <h3>Liquidificador Profissional</h3>
         <p class="categoria">Categoria: Eletrodomésticos</p>
-        <p class="valor">R$ 280,00</p>
-        <button class="btn-reservar" onclick="abrirModal(this, 'Liquidificador Profissional', 'Eletrodomésticos', '280.00')">
+        <button class="btn-reservar" onclick="abrirModal(this, 'Liquidificador Profissional', 'Eletrodomésticos')">
             Reservar Presente
         </button>
     </div>
@@ -166,12 +162,13 @@
         let itemAtual = {};
         let botaoAtual = null;
 
-        function abrirModal(botao, nomeItem, categoria, valor) {
-            itemAtual = { nomeItem, categoria, valor };
+        function abrirModal(botao, nomeItem, categoria) {
+            // Não armazenamos nem exibimos valores por privacidade/solicitação
+            itemAtual = { nomeItem, categoria };
             botaoAtual = botao;
 
             document.getElementById('itemSelecionado').textContent = 
-                `Você está reservando: ${nomeItem} - R$ ${valor}`;
+                `Você está reservando: ${nomeItem}`;
             document.getElementById('modalReserva').style.display = 'block';
         }
 
@@ -186,7 +183,7 @@
             const dados = {
                 nomeItem: itemAtual.nomeItem,
                 categoria: itemAtual.categoria,
-                valor: itemAtual.valor,
+                // valor removido do payload intencionalmente
                 nomeConvidado: document.getElementById('nomeConvidado').value,
                 emailConvidado: document.getElementById('emailConvidado').value,
                 telefoneConvidado: document.getElementById('telefoneConvidado').value
