@@ -215,6 +215,7 @@
                 }
             } catch (error) {
                 console.error('Erro:', error);
+                console.log("Raw JSON string that caused the error:", jsonString);
                 alert('Erro ao conectar com o servidor. Tente novamente.');
             }
         });
