@@ -139,7 +139,8 @@
     // A aplicação cliente envia a reserva diretamente para o WEBHOOK_URL (como antes)
     // e, em caso de sucesso, chama o backend local para marcar o item como reservado no JSON.
     const WEBHOOK_URL = 'https://rafahai.com/webhook-test/reservar-presente';
-    const ITENS_URL = '/api/itens';
+    // Carrega os itens diretamente do arquivo estático itens.json
+    const ITENS_URL = '/itens.json';
     const MARCAR_URL = '/api/marcar';
 
         let itemAtual = {};
@@ -221,9 +222,12 @@
             try {
                 const res = await fetch(ITENS_URL);
                 const itens = await res.json();
+                // Quando carregamos do arquivo JSON, ele contém também itens reservados.
+                // Filtramos aqui para exibir apenas os disponíveis (reservado === false).
+                const disponiveis = (Array.isArray(itens) ? itens : []).filter(i => !i.reservado);
                 const lista = document.getElementById('listaPresentes');
                 lista.innerHTML = '';
-                itens.forEach(item => {
+                disponiveis.forEach(item => {
                     const div = document.createElement('div');
                     div.className = 'presente-item';
 
