@@ -140,6 +140,7 @@
     // e, em caso de sucesso, chama o backend local para marcar o item como reservado no JSON.
     const WEBHOOK_URL = 'https://rafahai.com/webhook-test/reservar-presente';
     // Carrega os itens diretamente do arquivo estático itens.json
+    // Use caminho relativo (sem leading slash) para funcionar em GitHub Pages
     const ITENS_URL = '/itens.json';
     const MARCAR_URL = '/api/marcar';
 
