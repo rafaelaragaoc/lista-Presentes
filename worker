@@ -1,0 +1,127 @@
+// export default {
+//   async fetch(request, env) {
+//     // CORS preflight
+//     if (request.method === 'OPTIONS') {
+//       return new Response(null, {
+//         status: 204,
+//         headers: {
+//           'Access-Control-Allow-Origin': '*',
+//           'Access-Control-Allow-Methods': 'POST, OPTIONS',
+//           'Access-Control-Allow-Headers': 'Content-Type',
+//         },
+//       });
+//     }
+
+//     if (request.method !== 'POST') {
+//       return new Response(JSON.stringify({ success: false, error: 'method_not_allowed' }), {
+//         status: 405,
+//         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+//       });
+//     }
+
+//     // Espera JSON { path, content }
+//     let body;
+//     try {
+//       body = await request.json();
+//     } catch (err) {
+//       return new Response(JSON.stringify({ success: false, error: 'invalid_json' }), {
+//         status: 400,
+//         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+//       });
+//     }
+
+//     const { path, content } = body;
+//     if (!path || !content) {
+//       return new Response(JSON.stringify({ success: false, error: 'missing_fields' }), {
+//         status: 400,
+//         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+//       });
+//     }
+
+//     // Config via env (defina estes no painel do Worker / wrangler secrets)
+//     const GITHUB_OWNER = env.GITHUB_OWNER;
+//     const GITHUB_REPO = env.GITHUB_REPO;
+//     const GITHUB_TOKEN = env.GITHUB_TOKEN;
+//     const GITHUB_BRANCH = env.GITHUB_BRANCH || 'main';
+
+//     if (!GITHUB_OWNER || !GITHUB_REPO || !GITHUB_TOKEN) {
+//       return new Response(JSON.stringify({ success: false, error: 'server_not_configured' }), {
+//         status: 500,
+//         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+//       });
+//     }
+
+//     const apiBase = `https://api.github.com/repos/${encodeURIComponent(GITHUB_OWNER)}/${encodeURIComponent(GITHUB_REPO)}/contents/${encodeURIComponent(path)}`;
+
+//     // helper: base64 encode unicode-safe
+//     function base64EncodeUnicode(str) {
+//       // btoa(unescape(encodeURIComponent(str)))
+//       return btoa(unescape(encodeURIComponent(str)));
+//     }
+
+//     try {
+//       // 1) Tentar obter o SHA atual (caso arquivo exista)
+//       let sha;
+//       const getUrl = `${apiBase}?ref=${encodeURIComponent(GITHUB_BRANCH)}`;
+//       const getResp = await fetch(getUrl, {
+//         method: 'GET',
+//         headers: {
+//           Authorization: `Bearer ${GITHUB_TOKEN}`,
+//           Accept: 'application/vnd.github.v3+json',
+//           'User-Agent': 'cloudflare-worker',
+//         },
+//       });
+
+//       if (getResp.status === 200) {
+//         const getJson = await getResp.json();
+//         sha = getJson.sha;
+//       } else if (getResp.status === 404) {
+//         sha = undefined; // arquivo novo
+//       } else {
+//         const text = await getResp.text();
+//         console.error('GitHub GET error', getResp.status, text);
+//         // continúa para tentar PUT de qualquer forma (GitHub pode retornar 404 se não existir)
+//       }
+
+//       // 2) Fazer PUT (criar/atualizar)
+//       const putBody = {
+//         message: `Atualiza ${path} via Cloudflare Worker`,
+//         content: base64EncodeUnicode(content),
+//         branch: GITHUB_BRANCH,
+//       };
+//       if (sha) putBody.sha = sha;
+
+//       const putResp = await fetch(apiBase, {
+//         method: 'PUT',
+//         headers: {
+//           Authorization: `Bearer ${GITHUB_TOKEN}`,
+//           Accept: 'application/vnd.github.v3+json',
+//           'Content-Type': 'application/json',
+//           'User-Agent': 'cloudflare-worker',
+//         },
+//         body: JSON.stringify(putBody),
+//       });
+
+//       if (!putResp.ok) {
+//         const errText = await putResp.text();
+//         console.error('GitHub PUT failed', putResp.status, errText);
+//         return new Response(JSON.stringify({ success: false, error: 'github_put_failed', status: putResp.status, body: errText }), {
+//           status: 500,
+//           headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+//         });
+//       }
+
+//       // sucesso
+//       return new Response(JSON.stringify({ success: true }), {
+//         status: 200,
+//         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+//       });
+//     } catch (err) {
+//       console.error('Worker exception', err);
+//       return new Response(JSON.stringify({ success: false, error: 'worker_error', message: String(err) }), {
+//         status: 500,
+//         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+//       });
+//     }
+//   },
+// };

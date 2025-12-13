@@ -142,7 +142,10 @@
     // Carrega os itens diretamente do arquivo estático itens.json
     // Use caminho relativo (sem leading slash) para funcionar em GitHub Pages
     const ITENS_URL = 'itens.json';
-    const MARCAR_URL = '/api/marcar';
+    // Quando o site está hospedado no GitHub Pages não existe um backend
+    // local para /api/marcar. Use sua Cloudflare Worker diretamente como endpoint
+    // para marcar itens (substitua pela sua URL se for diferente):
+    const MARCAR_URL = 'https://dawn-sun-d829.raragao803.workers.dev/';
 
         let itemAtual = {};
         let botaoAtual = null;
