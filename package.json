@@ -1,0 +1,15 @@
+{
+  "name": "lista-presentes",
+  "version": "1.0.0",
+  "description": "Lista de presentes com backend simples para gerenciar reservas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.9"
+  }
+}

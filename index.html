@@ -103,28 +103,8 @@
 <body>
     <h1>🎁 Lista de Presentes do Casamento</h1>
 
-    <div class="presente-item" data-disponivel="true">
-        <h3>Jogo de Panelas Antiaderente</h3>
-        <p class="categoria">Categoria: Cozinha</p>
-        <button class="btn-reservar" onclick="abrirModal(this, 'Jogo de Panelas Antiaderente', 'Cozinha')">
-            Reservar Presente
-        </button>
-    </div>
-
-    <div class="presente-item" data-disponivel="true">
-        <h3>Edredom Casal King</h3>
-        <p class="categoria">Categoria: Quarto</p>
-        <button class="btn-reservar" onclick="abrirModal(this, 'Edredom Casal King', 'Quarto')">
-            Reservar Presente
-        </button>
-    </div>
-
-    <div class="presente-item" data-disponivel="true">
-        <h3>Liquidificador Profissional</h3>
-        <p class="categoria">Categoria: Eletrodomésticos</p>
-        <button class="btn-reservar" onclick="abrirModal(this, 'Liquidificador Profissional', 'Eletrodomésticos')">
-            Reservar Presente
-        </button>
+    <div id="listaPresentes">
+        <!-- Lista de presentes será carregada dinamicamente de /api/itens -->
     </div>
 
     <!-- Modal de Reserva -->
@@ -156,18 +136,21 @@
     </div>
 
     <script>
-        // IMPORTANTE: Substitua pela URL do seu webhook do n8n
-        const WEBHOOK_URL = 'https://rafahai.com/webhook-test/reservar-presente';
+    // A aplicação cliente envia a reserva diretamente para o WEBHOOK_URL (como antes)
+    // e, em caso de sucesso, chama o backend local para marcar o item como reservado no JSON.
+    const WEBHOOK_URL = 'https://rafahai.com/webhook-test/reservar-presente';
+    const ITENS_URL = '/api/itens';
+    const MARCAR_URL = '/api/marcar';
 
         let itemAtual = {};
         let botaoAtual = null;
 
-        function abrirModal(botao, nomeItem, categoria) {
-            // Não armazenamos nem exibimos valores por privacidade/solicitação
-            itemAtual = { nomeItem, categoria };
+        function abrirModal(botao, id, nomeItem, categoria) {
+            // Armazenamos o id para enviar ao backend
+            itemAtual = { id, nomeItem, categoria };
             botaoAtual = botao;
 
-            document.getElementById('itemSelecionado').textContent = 
+            document.getElementById('itemSelecionado').textContent =
                 `Você está reservando: ${nomeItem}`;
             document.getElementById('modalReserva').style.display = 'block';
         }
@@ -180,30 +163,44 @@
         document.getElementById('formReserva').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            const dados = {
+            // Monta payload para o webhook (como antes)
+            const payload = {
+                id: itemAtual.id,
                 nomeItem: itemAtual.nomeItem,
                 categoria: itemAtual.categoria,
-                // valor removido do payload intencionalmente
                 nomeConvidado: document.getElementById('nomeConvidado').value,
                 emailConvidado: document.getElementById('emailConvidado').value,
                 telefoneConvidado: document.getElementById('telefoneConvidado').value
             };
 
             try {
+                // Envia direto para o webhook (preserva o comportamento anterior)
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dados)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
 
                 const resultado = await response.json();
 
                 if (resultado.success) {
+                    // Se webhook confirmou sucesso, pede para o backend marcar no JSON
+                    const marcar = await fetch(MARCAR_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: itemAtual.id })
+                    });
+
+                    const marcarRes = await marcar.json();
+                    if (!marcarRes.success) {
+                        alert('Reserva enviada ao webhook, mas falhou ao atualizar lista local. Contate o suporte.');
+                        fecharModal();
+                        return;
+                    }
+
                     alert('Presente reservado com sucesso! Obrigado! 🎉');
 
-                    // Marcar como reservado
+                    // Marcar como reservado na interface
                     botaoAtual.textContent = 'Já Reservado';
                     botaoAtual.classList.add('btn-reservado');
                     botaoAtual.disabled = true;
@@ -215,10 +212,45 @@
                 }
             } catch (error) {
                 console.error('Erro:', error);
-                console.log("Raw JSON string that caused the error:", body);
-                alert('Erro ao conectar com o servidor. Tente novamente.');
+                alert('Erro ao conectar com o webhook. Tente novamente.');
             }
         });
+
+        // Carrega itens via API e renderiza
+        async function carregarItens() {
+            try {
+                const res = await fetch(ITENS_URL);
+                const itens = await res.json();
+                const lista = document.getElementById('listaPresentes');
+                lista.innerHTML = '';
+                itens.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'presente-item';
+
+                    const h3 = document.createElement('h3');
+                    h3.textContent = item.nomeItem;
+                    div.appendChild(h3);
+
+                    const pcat = document.createElement('p');
+                    pcat.className = 'categoria';
+                    pcat.textContent = `Categoria: ${item.categoria}`;
+                    div.appendChild(pcat);
+
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-reservar';
+                    btn.textContent = 'Reservar Presente';
+                    btn.addEventListener('click', () => abrirModal(btn, item.id, item.nomeItem, item.categoria));
+                    div.appendChild(btn);
+
+                    lista.appendChild(div);
+                });
+            } catch (err) {
+                console.error('Erro ao carregar itens:', err);
+            }
+        }
+
+        // Inicializar carregamento
+        carregarItens();
 
         // Fechar modal ao clicar fora
         window.onclick = function(event) {

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nomeItem": "Jogo de Panelas Antiaderente",
+    "categoria": "Cozinha",
+    "reservado": false
+  },
+  {
+    "id": 2,
+    "nomeItem": "Edredom Casal King",
+    "categoria": "Quarto",
+    "reservado": false
+  },
+  {
+    "id": 3,
+    "nomeItem": "Liquidificador Profissional",
+    "categoria": "Eletrodomésticos",
+    "reservado": false
+  }
+]
