@@ -144,6 +144,20 @@
     const ITENS_URL = 'itens.json';
     // Use the Cloudflare Worker URL to mark items when hosted on GitHub Pages
     const MARCAR_URL = 'https://dawn-sun-d829.raragao803.workers.dev/';
+    // Corrige possíveis problemas de codificação (mojibake)
+    function fixEncoding(str) {
+        if (!str || typeof str !== 'string') return str;
+        // Detect common mojibake markers (Ã, Â, Ã¡, Ã© etc.)
+        if (/Ã|Â|Ã¡|Ã©|Ã³|Ã£|Ã§/.test(str)) {
+            try {
+                // Converte Latin1 mojibake para UTF-8
+                return decodeURIComponent(escape(str));
+            } catch (e) {
+                return str;
+            }
+        }
+        return str;
+    }
 
         let itemAtual = {};
         let botaoAtual = null;
@@ -154,7 +168,7 @@
             botaoAtual = botao;
 
             document.getElementById('itemSelecionado').textContent =
-                `Você está reservando: ${nomeItem}`;
+                `Você está reservando: ${fixEncoding(nomeItem)}`;
             document.getElementById('modalReserva').style.display = 'block';
         }
 
@@ -250,12 +264,12 @@
                     div.className = 'presente-item';
 
                     const h3 = document.createElement('h3');
-                    h3.textContent = item.nomeItem;
+                    h3.textContent = fixEncoding(item.nomeItem);
                     div.appendChild(h3);
 
                     const pcat = document.createElement('p');
                     pcat.className = 'categoria';
-                    pcat.textContent = `Categoria: ${item.categoria}`;
+                    pcat.textContent = `Categoria: ${fixEncoding(item.categoria)}`;
                     div.appendChild(pcat);
 
                     const btn = document.createElement('button');

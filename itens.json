@@ -97,7 +97,7 @@
   },
   {
     "id": 17,
-    "nomeItem": "espatula",
+    "nomeItem": "espátula",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -157,7 +157,7 @@
   },
   {
     "id": 27,
-    "nomeItem": "portas organizadores de alimentos (arroz, feijão, macarrão, café, açucar)",
+    "nomeItem": "portas organizadores de alimentos (arroz, feijão, macarrão, café, açúcar)",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -169,7 +169,7 @@
   },
   {
     "id": 29,
-    "nomeItem": "tÃ¡bua de corte",
+    "nomeItem": "tábua de corte",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -217,7 +217,7 @@
   },
   {
     "id": 37,
-    "nomeItem": "cabides para guarda-roup",
+    "nomeItem": "cabides para guarda-roupa",
     "categoria": "quarto",
     "reservado": false
   },
