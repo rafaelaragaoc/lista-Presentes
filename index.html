@@ -239,9 +239,7 @@
                     'Content-Type': 'application/json; charset=UTF-8' 
                 } 
             });
-                const decoder = new TextDecoder('utf-8');
-                const itensJson = await res.json();
-                itens = decoder.decode(itensJson);
+                const itens = await res.json();
                 // Quando carregamos do arquivo JSON, ele contém também itens reservados.
                 // Filtramos aqui para exibir apenas os disponíveis (reservado === false).
                 const disponiveis = (Array.isArray(itens) ? itens : []).filter(i => !i.reservado);
