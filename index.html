@@ -142,7 +142,8 @@
     // Carrega os itens diretamente do arquivo estático itens.json
     // Use caminho relativo (sem leading slash) para funcionar em GitHub Pages
     const ITENS_URL = 'itens.json';
-    const MARCAR_URL = '/api/marcar';
+    // Use the Cloudflare Worker URL to mark items when hosted on GitHub Pages
+    const MARCAR_URL = 'https://dawn-sun-d829.raragao803.workers.dev/';
 
         let itemAtual = {};
         let botaoAtual = null;
@@ -187,11 +188,22 @@
 
                 if (resultado.success) {
                     // Se webhook confirmou sucesso, pede para o backend marcar no JSON
+                    // Call the Cloudflare Worker to mark the item (use CORS)
                     const marcar = await fetch(MARCAR_URL, {
                         method: 'POST',
+                        mode: 'cors',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ id: itemAtual.id })
                     });
+
+                    if (!marcar.ok) {
+                        let body = null;
+                        try { body = await marcar.json(); } catch(e) { body = await marcar.text(); }
+                        console.error('Marcar failed', marcar.status, body);
+                        alert('Reserva enviada ao webhook, mas falhou ao atualizar a lista (worker error).');
+                        fecharModal();
+                        return;
+                    }
 
                     const marcarRes = await marcar.json();
                     if (!marcarRes.success) {
@@ -200,14 +212,14 @@
                         return;
                     }
 
-                    alert('Presente reservado com sucesso! Obrigado! 🎉');
-
                     // Marcar como reservado na interface
                     botaoAtual.textContent = 'Já Reservado';
                     botaoAtual.classList.add('btn-reservado');
                     botaoAtual.disabled = true;
                     botaoAtual.onclick = null;
 
+                    // Recarrega a lista como feedback visual
+                    await carregarItens();
                     fecharModal();
                 } else {
                     alert('Erro ao reservar presente. Tente novamente.');
