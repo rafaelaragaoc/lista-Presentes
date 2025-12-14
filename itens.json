@@ -14,7 +14,7 @@
   {
     "id": 3,
     "nomeItem": "Liquidificador Profissional",
-    "categoria": "Eletrodomésticos",
-    "reservado": false
+    "categoria": "EletrodomÃ©sticos",
+    "reservado": true
   }
 ]
