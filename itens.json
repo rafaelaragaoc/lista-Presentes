@@ -1,20 +1,394 @@
+// [
+//   {
+//     "id": 1,
+//     "nomeItem": "Jogo de Panelas Antiaderente",
+//     "categoria": "Cozinha",
+//     "reservado": false
+//   },
+//   {
+//     "id": 2,
+//     "nomeItem": "Edredom Casal King",
+//     "categoria": "Quarto",
+//     "reservado": false
+//   },
+//   {
+//     "id": 3,
+//     "nomeItem": "Liquidificador Profissional",
+//     "categoria": "EletrodomÃÂ©sticos",
+//     "reservado": false
+//   }
+// ]
 [
   {
     "id": 1,
-    "nomeItem": "Jogo de Panelas Antiaderente",
-    "categoria": "Cozinha",
-    "reservado": true
+    "nomeItem": "jogo de panelas",
+    "categoria": "cozinha",
+    "reservado": false
   },
   {
     "id": 2,
-    "nomeItem": "Edredom Casal King",
-    "categoria": "Quarto",
+    "nomeItem": "panela de pressão",
+    "categoria": "cozinha",
     "reservado": false
   },
   {
     "id": 3,
-    "nomeItem": "Liquidificador Profissional",
-    "categoria": "EletrodomÃÂ©sticos",
-    "reservado": true
+    "nomeItem": "jogo de talheres",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 4,
+    "nomeItem": "jogo de copos",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 5,
+    "nomeItem": "jogo de taças",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 6,
+    "nomeItem": "jogo de xícaras",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 7,
+    "nomeItem": "jogo de louças",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 8,
+    "nomeItem": "jogo de pratos",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 9,
+    "nomeItem": "jogo de facas (pão, carne, peixe e legumes)",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 10,
+    "nomeItem": "descanso de panelas",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 11,
+    "nomeItem": "escorredor de massa",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 12,
+    "nomeItem": "potes para mantimentos",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 13,
+    "nomeItem": "lixeira grande com tampa",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 14,
+    "nomeItem": "conchas e escumadeiras",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 15,
+    "nomeItem": "colheres de pau ou silicone",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 16,
+    "nomeItem": "abridor de latas e bebidas",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 17,
+    "nomeItem": "espatula",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 18,
+    "nomeItem": "travessa de vidro",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 19,
+    "nomeItem": "saladeira",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 20,
+    "nomeItem": "formas de bolo",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 21,
+    "nomeItem": "boleira",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 22,
+    "nomeItem": "medidores de cozinha (xícara, colher, copo)",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 23,
+    "nomeItem": "cumbucas",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 24,
+    "nomeItem": "porta-copos",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 25,
+    "nomeItem": "pote porta frios (queijo e presunto)",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 26,
+    "nomeItem": "portas organizadores de temperos",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 27,
+    "nomeItem": "portas organizadores de alimentos (arroz, feijão, macarrão, café, açúcar…)",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 28,
+    "nomeItem": "jarra de suco",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 29,
+    "nomeItem": "tábua de corte",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 30,
+    "nomeItem": "pano de prato",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 31,
+    "nomeItem": "jogo americano",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 32,
+    "nomeItem": "toalha de mesa",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 33,
+    "nomeItem": "conjunto de tapetes para cozinha",
+    "categoria": "cozinha",
+    "reservado": false
+  },
+  {
+    "id": 34,
+    "nomeItem": "kit cama casal queen",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 35,
+    "nomeItem": "travesseiros",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 36,
+    "nomeItem": "cobertor / manta / lençol",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 37,
+    "nomeItem": "cabides para guarda-roup",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 38,
+    "nomeItem": "itens para quarto",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 39,
+    "nomeItem": "toalhas de banho",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 40,
+    "nomeItem": "toalhas de rosto",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 41,
+    "nomeItem": "kit lixeira",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 42,
+    "nomeItem": "kit banheiro",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 43,
+    "nomeItem": "tapetes para banheiro",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 44,
+    "nomeItem": "prateleira banheiro (colocar itens de higiene)",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 45,
+    "nomeItem": "itens para banheiro",
+    "categoria": "quarto",
+    "reservado": false
+  },
+  {
+    "id": 46,
+    "nomeItem": "baldes",
+    "categoria": "serviço",
+    "reservado": false
+  },
+  {
+    "id": 47,
+    "nomeItem": "mop",
+    "categoria": "serviço",
+    "reservado": false
+  },
+  {
+    "id": 48,
+    "nomeItem": "bacias",
+    "categoria": "serviço",
+    "reservado": false
+  },
+  {
+    "id": 49,
+    "nomeItem": "cesto de roupas",
+    "categoria": "serviço",
+    "reservado": false
+  },
+  {
+    "id": 50,
+    "nomeItem": "kit pano de chão",
+    "categoria": "serviço",
+    "reservado": false
+  },
+  {
+    "id": 51,
+    "nomeItem": "pote organizador (sabão e amaciante)",
+    "categoria": "serviço",
+    "reservado": false
+  },
+  {
+    "id": 52,
+    "nomeItem": "microondas",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 53,
+    "nomeItem": "pipoqueira",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 54,
+    "nomeItem": "cafeteira",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 55,
+    "nomeItem": "batedeira",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 56,
+    "nomeItem": "processador de alimentos (elétrico)",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 57,
+    "nomeItem": "armário cozinha",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 58,
+    "nomeItem": "guarda-roupa",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 59,
+    "nomeItem": "sofá",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 60,
+    "nomeItem": "estante para livros",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
+  },
+  {
+    "id": 61,
+    "nomeItem": "tábua de passar",
+    "categoria": "eletodomesticos/move",
+    "reservado": false
+  },
+  {
+    "id": 62,
+    "nomeItem": "ferro de passar roupas",
+    "categoria": "eletodomesticos/moveis",
+    "reservado": false
   }
 ]
