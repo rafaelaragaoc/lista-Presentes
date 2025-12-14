@@ -3,7 +3,7 @@
     "id": 1,
     "nomeItem": "Jogo de Panelas Antiaderente",
     "categoria": "Cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 2,
@@ -14,7 +14,7 @@
   {
     "id": 3,
     "nomeItem": "Liquidificador Profissional",
-    "categoria": "EletrodomÃ©sticos",
+    "categoria": "EletrodomÃÂ©sticos",
     "reservado": true
   }
 ]
