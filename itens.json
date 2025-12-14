@@ -3,11 +3,11 @@
     "id": 1,
     "nomeItem": "jogo de panelas",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 2,
-    "nomeItem": "panela de pressão",
+    "nomeItem": "panela de pressÃ£o",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -25,19 +25,19 @@
   },
   {
     "id": 5,
-    "nomeItem": "jogo de taças",
+    "nomeItem": "jogo de taÃ§as",
     "categoria": "cozinha",
     "reservado": false
   },
   {
     "id": 6,
-    "nomeItem": "jogo de xícaras",
+    "nomeItem": "jogo de xÃ­caras",
     "categoria": "cozinha",
     "reservado": false
   },
   {
     "id": 7,
-    "nomeItem": "jogo de louças",
+    "nomeItem": "jogo de louÃ§as",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -49,7 +49,7 @@
   },
   {
     "id": 9,
-    "nomeItem": "jogo de facas (pão, carne, peixe e legumes)",
+    "nomeItem": "jogo de facas (pÃ£o, carne, peixe e legumes)",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -127,7 +127,7 @@
   },
   {
     "id": 22,
-    "nomeItem": "medidores de cozinha (xícara, colher, copo)",
+    "nomeItem": "medidores de cozinha (xÃ­cara, colher, copo)",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -157,7 +157,7 @@
   },
   {
     "id": 27,
-    "nomeItem": "portas organizadores de alimentos (arroz, feijão, macarrão, café, açúcar…)",
+    "nomeItem": "portas organizadores de alimentos (arroz, feijÃ£o, macarrÃ£o, cafÃ©, aÃ§Ãºcarâ¦)",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -169,7 +169,7 @@
   },
   {
     "id": 29,
-    "nomeItem": "tábua de corte",
+    "nomeItem": "tÃ¡bua de corte",
     "categoria": "cozinha",
     "reservado": false
   },
@@ -211,7 +211,7 @@
   },
   {
     "id": 36,
-    "nomeItem": "cobertor / manta / lençol",
+    "nomeItem": "cobertor / manta / lenÃ§ol",
     "categoria": "quarto",
     "reservado": false
   },
@@ -272,37 +272,37 @@
   {
     "id": 46,
     "nomeItem": "baldes",
-    "categoria": "serviço",
+    "categoria": "serviÃ§o",
     "reservado": false
   },
   {
     "id": 47,
     "nomeItem": "mop",
-    "categoria": "serviço",
+    "categoria": "serviÃ§o",
     "reservado": false
   },
   {
     "id": 48,
     "nomeItem": "bacias",
-    "categoria": "serviço",
+    "categoria": "serviÃ§o",
     "reservado": false
   },
   {
     "id": 49,
     "nomeItem": "cesto de roupas",
-    "categoria": "serviço",
+    "categoria": "serviÃ§o",
     "reservado": false
   },
   {
     "id": 50,
-    "nomeItem": "kit pano de chão",
-    "categoria": "serviço",
+    "nomeItem": "kit pano de chÃ£o",
+    "categoria": "serviÃ§o",
     "reservado": false
   },
   {
     "id": 51,
-    "nomeItem": "pote organizador (sabão e amaciante)",
-    "categoria": "serviço",
+    "nomeItem": "pote organizador (sabÃ£o e amaciante)",
+    "categoria": "serviÃ§o",
     "reservado": false
   },
   {
@@ -331,13 +331,13 @@
   },
   {
     "id": 56,
-    "nomeItem": "processador de alimentos (elétrico)",
+    "nomeItem": "processador de alimentos (elÃ©trico)",
     "categoria": "eletodomesticos/moveis",
     "reservado": false
   },
   {
     "id": 57,
-    "nomeItem": "armário cozinha",
+    "nomeItem": "armÃ¡rio cozinha",
     "categoria": "eletodomesticos/moveis",
     "reservado": false
   },
@@ -349,7 +349,7 @@
   },
   {
     "id": 59,
-    "nomeItem": "sofá",
+    "nomeItem": "sofÃ¡",
     "categoria": "eletodomesticos/moveis",
     "reservado": false
   },
@@ -361,7 +361,7 @@
   },
   {
     "id": 61,
-    "nomeItem": "tábua de passar",
+    "nomeItem": "tÃ¡bua de passar",
     "categoria": "eletodomesticos/move",
     "reservado": false
   },
