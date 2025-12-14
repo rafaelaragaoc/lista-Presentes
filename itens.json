@@ -3,7 +3,7 @@
     "id": 1,
     "nomeItem": "jogo de panelas",
     "categoria": "cozinha",
-    "reservado": true
+    "reservado": false
   },
   {
     "id": 2,
