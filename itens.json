@@ -165,7 +165,7 @@
     "id": 28,
     "nomeItem": "jarra de suco",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 29,
