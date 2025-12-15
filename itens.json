@@ -93,7 +93,7 @@
     "id": 16,
     "nomeItem": "abridor de latas e bebidas",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 17,
