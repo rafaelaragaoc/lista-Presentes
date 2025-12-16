@@ -21,7 +21,7 @@
     "id": 4,
     "nomeItem": "jogo de copos",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 5,
