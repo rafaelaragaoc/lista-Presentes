@@ -189,7 +189,7 @@
     "id": 32,
     "nomeItem": "toalha de mesa",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 33,
