@@ -15,7 +15,7 @@
     "id": 3,
     "nomeItem": "jogo de talheres",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 4,
