@@ -9,7 +9,7 @@
     "id": 2,
     "nomeItem": "panela de pressão",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 3,
