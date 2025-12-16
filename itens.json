@@ -369,6 +369,6 @@
     "id": 62,
     "nomeItem": "ferro de passar roupas",
     "categoria": "eletodomesticos/moveis",
-    "reservado": false
+    "reservado": true
   }
 ]
