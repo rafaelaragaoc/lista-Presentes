@@ -231,7 +231,7 @@
     "id": 39,
     "nomeItem": "toalhas de banho",
     "categoria": "quarto",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 40,
