@@ -27,7 +27,7 @@
     "id": 5,
     "nomeItem": "jogo de taças",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 6,
