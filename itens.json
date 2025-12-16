@@ -237,7 +237,7 @@
     "id": 40,
     "nomeItem": "toalhas de rosto",
     "categoria": "quarto",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 41,
