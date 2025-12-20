@@ -69,7 +69,7 @@
     "id": 12,
     "nomeItem": "potes para mantimentos",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 13,
