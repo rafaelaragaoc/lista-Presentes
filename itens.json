@@ -33,7 +33,7 @@
     "id": 6,
     "nomeItem": "jogo de xícaras",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 7,
