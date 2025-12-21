@@ -207,7 +207,7 @@
     "id": 35,
     "nomeItem": "travesseiros",
     "categoria": "quarto",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 36,
