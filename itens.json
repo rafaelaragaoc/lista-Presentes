@@ -45,7 +45,7 @@
     "id": 8,
     "nomeItem": "jogo de pratos",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 9,
