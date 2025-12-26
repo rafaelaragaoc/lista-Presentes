@@ -51,7 +51,7 @@
     "id": 9,
     "nomeItem": "jogo de facas (pão, carne, peixe e legumes)",
     "categoria": "cozinha",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 10,
