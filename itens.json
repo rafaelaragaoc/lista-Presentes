@@ -279,7 +279,7 @@
     "id": 47,
     "nomeItem": "mop",
     "categoria": "serviço",
-    "reservado": false
+    "reservado": true
   },
   {
     "id": 48,
